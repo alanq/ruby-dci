@@ -17,8 +17,4 @@ class Context
     return_object
   end
 
-  def name
-    self.class.name.underscore
-  end
-
 end # class Context

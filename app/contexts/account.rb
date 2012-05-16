@@ -1,7 +1,6 @@
 class Account < Context
 
   def initialize(ledgers = [])
-    #@ledgers = Array(ledgers)
     @role_player = {} # eg { 'role1_name' => object1, 'role2_name' => object1 }
     @role_player[Ledgers] = Array(ledgers) # association of the role Ledgers with the object @ledgers
   end
