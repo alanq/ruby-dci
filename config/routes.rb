@@ -1,4 +1,4 @@
-MoneyTransfer::Application.routes.draw do
+DCIMoneyTransfer::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

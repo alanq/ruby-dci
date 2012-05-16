@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-MoneyTransfer::Application.load_tasks
+DCIMoneyTransfer::Application.load_tasks
