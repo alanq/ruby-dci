@@ -1,9 +1,9 @@
 class Account < Context
 
   def initialize(ledgers = [])
-    @ledgers = Array(ledgers)
+    #@ledgers = Array(ledgers)
     @role_player = {} # eg { 'role1_name' => object1, 'role2_name' => object1 }
-    @role_player['Ledgers'] = @ledgers # association of the role Ledgers with the object @ledgers
+    @role_player['Ledgers'] = Array(ledgers) # association of the role Ledgers with the object @ledgers
   end
 
   def balance()
@@ -22,9 +22,9 @@ class Account < Context
     end
   end
 
+  # A role can use self or player to reference the obj associated with it
   class Ledgers < Role
     class << self
-      # can use self or player to reference the obj associated with this role
       def add_entry(msg, amount) 
         player << LedgerEntry.new(:message => msg, :amount => amount)
       end
