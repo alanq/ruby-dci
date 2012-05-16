@@ -18,6 +18,7 @@ class Account < Context
   end
   def decrease_balance(amount)
     execute_in_context do
+      debugger
       Ledgers.add_entry 'withdrawing', -1 * amount
     end
   end

@@ -16,14 +16,17 @@ class MoneyTransfer < Context
   class Source < Role
     class << self
       def transfer(amount) 
-        logger.info "Source balance is #{Source.balance}"
-        logger.info "Destination balance is #{Destination.balance}"
+        log = Logger.new(STDOUT)
+        log.info "Source balance is #{Source.balance}"
+        log.info "Destination balance is #{Destination.balance}"
         Destination.deposit amount
         Source.withdraw amount
-        logger.info "Source balance is now #{Source.balance}"
-        logger.info "Destination balance is now #{Destination.balance}"
+        log.info "Source balance is now #{Source.balance}"
+        log.info "Destination balance is now #{Destination.balance}"
+        log.close
       end
       def withdraw(amount)
+        debugger
         Source.decrease_balance amount
       end
     end
