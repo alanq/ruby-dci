@@ -1,10 +1,7 @@
-# Usage (from Controller): ctx = ContextClassName.call(actor_id)
-# Alternatovely the controller could do a Context.new followed by ctx.call
-
 class Context
   include ContextAccessor
 
-  attr_reader :role_player
+  attr_reader :role_player # allows a role to find its player
 
   # Context setter is defined here so it's not exposed to roles (via ContextAccessor)
   def context=(ctx)

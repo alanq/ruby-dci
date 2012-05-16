@@ -9,7 +9,7 @@ class MoneyTransfer < Context
   
   def trans
     execute_in_context do
-      Source.transfer @role_player[Amount]
+      Source.transfer @role_player[Amount] # so player not role will go to subcontext
     end
   end
 
