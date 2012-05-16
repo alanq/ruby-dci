@@ -1,7 +1,5 @@
 class Account < Context
 
-  attr_reader :ledgers # for the role to access context state
-
   def initialize(ledgers = [])
     @ledgers = Array(ledgers)
     @role_player = {} # eg { 'role1_name' => object1, 'role2_name' => object1 }
@@ -26,11 +24,12 @@ class Account < Context
 
   class Ledgers < Role
     class << self
-      def add_entry(msg, amount)
-        context.ledgers << LedgerEntry.new(:message => msg, :amount => amount)
+      # can use self or player to reference the obj associated with this role
+      def add_entry(msg, amount) 
+        player << LedgerEntry.new(:message => msg, :amount => amount)
       end
       def balance
-        context.ledgers.collect(&:amount).sum
+        player.collect(&:amount).sum
       end
     end # Role class methods
   end # Role
