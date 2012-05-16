@@ -12,14 +12,14 @@ class Role
     protected
       include ContextAccessor
 
-      def this_role 
+      def role_name
         self.to_s.split("::").last
       end
       def my_context_class # a role is defined inside its context class
-        self.to_s.chomp(this_role).constantize
+        self.to_s.chomp(role_name).constantize
       end
       def player
-        context.role_player[this_role]
+        context.role_player[self]
       end
       # allow player instance methods be called on the role's self
       def method_missing(method, *args, &block)

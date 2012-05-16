@@ -2,14 +2,14 @@ class MoneyTransfer < Context
 
   def initialize(source, destination, amount)
     @role_player = {} # eg { 'role1_name' => object1, 'role2_name' => object1 }
-    @role_player['Source'] = source
-    @role_player['Destination'] = destination
-    @role_player['Amount'] = amount
+    @role_player[Source] = source
+    @role_player[Destination] = destination
+    @role_player[Amount] = amount
   end
   
   def trans
     execute_in_context do
-      Source.transfer Amount
+      Source.transfer @role_player[Amount]
     end
   end
 
@@ -23,10 +23,8 @@ class MoneyTransfer < Context
         Source.withdraw amount
         log.info "Source balance is now #{Source.balance}"
         log.info "Destination balance is now #{Destination.balance}"
-        log.close
       end
       def withdraw(amount)
-        debugger
         Source.decrease_balance amount
       end
     end
