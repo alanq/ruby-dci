@@ -1,6 +1,8 @@
 class MoneyTransfer
   include Context
 
+  attr_accessor :source, :destination
+
   def initialize(source, destination, amount)
     @source = source
     assign_role Source, @source

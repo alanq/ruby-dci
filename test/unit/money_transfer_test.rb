@@ -20,4 +20,9 @@ class MoneyTransferTest < ActiveSupport::TestCase
     assert_difference('@source.balance', -1 * @amount) { @ctx.trans }
     assert_difference('@destination.balance', @amount) { @ctx.trans }
   end
+  test "source, destination ccounts are in context instance vars" do
+    @ctx.trans
+    assert @source == @ctx.source
+    assert @destination == @ctx.destination
+  end
 end

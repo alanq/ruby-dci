@@ -1,6 +1,6 @@
 # roles have access to their associated object while the role's context is the current context.
 module Role
-  module ClassMethods
+  module ClassMethods # to extend role player objects
     include ContextAccessor
 
     # returns the player as the substitute for an unrecognised constant that is the role name
