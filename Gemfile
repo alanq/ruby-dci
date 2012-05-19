@@ -21,7 +21,7 @@ group :assets do
 end
 group :development, :test do
   gem 'ruby-debug-base19', '0.11.26'
-  gem 'ruby-debug19', :require => false
+  gem 'ruby-debug19', :require => 'ruby-debug'
 end
 gem 'jquery-rails'
 

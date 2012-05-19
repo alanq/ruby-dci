@@ -2,8 +2,7 @@ class Account
   include Context
 
   def initialize(ledgers = [])
-    @ledgers = ledgers
-    @ledgers.extend(Ledgers)
+    assign_role Ledgers, Array(ledgers)
   end
 
   def balance()
@@ -23,13 +22,13 @@ class Account
   end
 
   module Ledgers 
-    include Role
+    extend Role::ClassMethods
 
-    def add_entry(msg, amount) 
-      @ledgers << LedgerEntry.new(:message => msg, :amount => amount)
+    def self.add_entry(msg, amount) 
+      player << LedgerEntry.new(:message => msg, :amount => amount)
     end
-    def balance
-      @ledgers.collect(&:amount).sum
+    def self.balance
+      player.collect(&:amount).sum
     end
   end # Role
 

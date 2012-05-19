@@ -16,5 +16,10 @@ module Context
     self.context = old_context
     return_object
   end
-
+  private
+    def assign_role(role, object)
+      object.extend role
+      @role_player = {} unless @role_player
+      @role_player[role] = object
+    end
 end # class Context
