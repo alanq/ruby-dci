@@ -1,5 +1,6 @@
 # roles have access to their associated object while the role's context is the current context.
 module Role
+  
   module ClassMethods # to extend role player objects
     include ContextAccessor
 
@@ -7,7 +8,6 @@ module Role
     def player
       context.role_player[self]
     end
-
     # allow player object instance methods be called on the role's self
     def method_missing(method, *args, &block)
       super unless context && context.is_a?(my_context_class)
@@ -18,13 +18,12 @@ module Role
       end
     end
 
-    private
-      def role_name
-        self.to_s.split("::").last
-      end
-      def my_context_class # a role is defined inside its context class
-        self.to_s.chomp(role_name).constantize
-      end
+    def role_name
+      self.to_s.split("::").last
+    end
+    def my_context_class # a role is defined inside its context class
+      self.to_s.chomp(role_name).constantize
+    end
   end
   extend ClassMethods
 end

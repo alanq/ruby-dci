@@ -16,36 +16,39 @@ class MoneyTransfer
   
   def trans
     execute_in_context do
-      Source.transfer @amount
+      @source.transfer @amount
     end
   end
 
   module Source
+    include Role
     extend Role::ClassMethods
 
-    def self.transfer(amount) 
+    def transfer(amount) 
       log = Logger.new(STDOUT)
-      log.info "Source balance is #{Source.balance}"
+      log.info "Source balance is #{self.balance}"
       log.info "Destination balance is #{Destination.balance}"
       Destination.deposit amount
-      Source.withdraw amount
-      log.info "Source balance is now #{Source.balance}"
+      self.withdraw amount
+      log.info "Source balance is now #{self.balance}"
       log.info "Destination balance is now #{Destination.balance}"
     end
-    def self.withdraw(amount)
-      Source.decrease_balance amount
+    def withdraw(amount)
+      self.decrease_balance amount
     end
   end
 
   module Destination
+    include Role
     extend Role::ClassMethods
 
-    def self.deposit(amount) 
-      Destination.increase_balance amount
+    def deposit(amount) 
+      self.increase_balance amount
     end
   end
 
   module Amount
+    include Role
     extend Role::ClassMethods
   end
 end

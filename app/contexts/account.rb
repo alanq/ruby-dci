@@ -2,33 +2,35 @@ class Account
   include Context
 
   def initialize(ledgers = [])
-    assign_role Ledgers, Array(ledgers)
+    @ledgers = Array(ledgers)
+    assign_role Ledgers, @ledgers
   end
 
   def balance()
     execute_in_context do
-      Ledgers.balance
+      @ledgers.balance
     end
   end
   def increase_balance(amount)
     execute_in_context do
-      Ledgers.add_entry 'depositing', amount
+      @ledgers.add_entry 'depositing', amount
     end
   end
   def decrease_balance(amount)
     execute_in_context do
-      Ledgers.add_entry 'withdrawing', -1 * amount
+      @ledgers.add_entry 'withdrawing', -1 * amount
     end
   end
 
   module Ledgers 
+    include Role
     extend Role::ClassMethods
 
-    def self.add_entry(msg, amount) 
-      player << LedgerEntry.new(:message => msg, :amount => amount)
+    def add_entry(msg, amount) 
+      self << LedgerEntry.new(:message => msg, :amount => amount)
     end
-    def self.balance
-      player.collect(&:amount).sum
+    def balance
+      self.collect(&:amount).sum
     end
   end # Role
 
