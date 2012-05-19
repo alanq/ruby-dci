@@ -31,6 +31,6 @@ class AccountTest < ActiveSupport::TestCase
   end
   test "decrease balance" do
     init
-    assert_difference('@ctx.balance', 12.75) { @ctx.decrease_balance 12.75 }
+    assert_difference('@ctx.balance', -12.75) { @ctx.decrease_balance 12.75 }
   end
 end
