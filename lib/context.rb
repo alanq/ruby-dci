@@ -1,4 +1,4 @@
-class Context
+module Context
   include ContextAccessor
 
   attr_reader :role_player # allows a role to find its player

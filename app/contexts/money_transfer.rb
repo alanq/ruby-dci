@@ -1,4 +1,5 @@
-class MoneyTransfer < Context
+class MoneyTransfer
+  include Context
 
   def initialize(source, destination, amount)
     @role_player = {} # eg { 'role1_name' => object1, 'role2_name' => object1 }

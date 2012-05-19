@@ -10,4 +10,7 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def is_numeric(num)
+    num.is_a?(Integer) || num.is_a?(Float) || num.is_a?(BigDecimal)
+  end
 end
