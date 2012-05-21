@@ -1,10 +1,14 @@
 class MoneyTransfer
   include Context
+  
+  attr_reader :source, :destination
 
   def initialize(source, destination, amount)
     @role_player = {} # eg { 'role1_name' => object1, 'role2_name' => object1 }
-    @role_player[Source] = source
-    @role_player[Destination] = destination
+    @source = source
+    @role_player[Source] = @source
+    @destination = destination
+    @role_player[Destination] = @destination
     @role_player[Amount] = amount
   end
   
