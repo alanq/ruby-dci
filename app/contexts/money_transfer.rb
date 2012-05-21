@@ -21,7 +21,6 @@ class MoneyTransfer
   end
 
   module Source
-    include Role
     extend Role::ClassMethods
 
     def transfer(amount) 
@@ -39,7 +38,6 @@ class MoneyTransfer
   end
 
   module Destination
-    include Role
     extend Role::ClassMethods
 
     def deposit(amount) 
@@ -48,7 +46,6 @@ class MoneyTransfer
   end
 
   module Amount
-    include Role
     extend Role::ClassMethods
   end
 end

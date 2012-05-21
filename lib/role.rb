@@ -2,12 +2,8 @@
 module Role
   
   module ClassMethods # to extend role player objects
+  private
     include ContextAccessor
-
-    # returns the player as the substitute for an unrecognised constant that is the role name
-    def player
-      context.role_player[self]
-    end
     # allow player object instance methods be called on the role's self
     def method_missing(method, *args, &block)
       super unless context && context.is_a?(my_context_class)
@@ -17,7 +13,10 @@ module Role
         super
       end
     end
-
+    # returns the player as the substitute for an unrecognised constant that is the role name
+    def player
+      context.role_player[self]
+    end
     def role_name
       self.to_s.split("::").last
     end

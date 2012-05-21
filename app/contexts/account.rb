@@ -23,7 +23,6 @@ class Account
   end
 
   module Ledgers 
-    include Role
     extend Role::ClassMethods
 
     def add_entry(msg, amount) 
